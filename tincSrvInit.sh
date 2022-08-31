@@ -24,7 +24,7 @@ echo "PLEASE NOTE THAT the AddressFamily field would be set as ipv4 by default"
 
 echo "######### $Name ##########"
 read -p "Please enter the domain/IP of this server [$Address]:" -i "$Address" -e Address
-read -p "Please enter the subnet range for nodes connecting to this server [192.0.0.0/24]:" -i "192.0.0.0/24" -e Subnet
+read -p "Please enter the subnet range for nodes connecting to this server [192.0.0.1/24]:" -i "192.0.0.1/24" -e Subnet
 #echo "###### Please DO REMEMBER the trailing bits should be 0 ######"
 
 echo "
