@@ -49,7 +49,7 @@ read -p "[ IGNORABLE ] Please enter the network device you want to forward the p
 
 echo "
 #!/bin/bash
-/sbin/ifconfig \$INTERFACE $(echo $LocalIP netmask $(ipcalc $Subnet | grep -Eo "(255\.)+(0|255)");
+/sbin/ifconfig \$INTERFACE $(echo $LocalIP) netmask $(ipcalc $Subnet | grep -Eo "(255\.)+(0|255)");
 iptables -A FORWARD -o \$INTERFACE -j ACCEPT; iptables -A FORWARD -i \$INTERFACE -j ACCEPT; iptables -t nat -A POSTROUTING -o $dev -j MASQUERADE;
 " > /etc/tinc/$vpnName/tinc-up
 
