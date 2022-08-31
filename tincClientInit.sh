@@ -14,7 +14,7 @@ read -p "What's the server vpn directory name?(I guess it would be gameVpn by de
 echo "##### There're totally $(ls /etc/tinc/$vpnName/hosts | wc -l) nodes in the hosts directory of $vpnName #####"
 read -p "Please enter the static internal IP address/subnet[e.g. 192.0.0.2]:" -e Subnet
 ls /etc/tinc/$vpnName/hosts
-read -p "Please enter your server file name(which should be in the server vpn directory and stand for the server) [myServerFile]:" -i "myServerFile" -e ConnectTo
+read -p "Please enter your server file name(which should be in the server vpn directory, gameVpn if by default, and stand for the server) [myServerFile]:" -i "myServerFile" -e ConnectTo
 read -p "What's your server's public IP/domain and port[example.com 655]?:" -i "txcloud.hinwai.top 21111" -e Address
 
 echo "##### If you want to add extra subnets, please edit $clientpath/hosts/$Name #####"
