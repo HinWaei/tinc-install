@@ -41,7 +41,9 @@ Subnet = $Subnet
 " > /etc/tinc/$vpnName/hosts/$Name
 
 echo "####### tinc-up ######"
-read -p "Please enter the network device you want to forward the packets [eth0]:" -i "eth0" -e dev
+read -p "[ IGNORABLE ] Please enter the network device you want to forward the packets [eth0]:" -i "eth0" -e dev
+
+####################### generating tinc-up #######################
 
 echo $(cidr_to_netmask)
 echo "
@@ -49,6 +51,8 @@ echo "
 /sbin/ifconfig \$INTERFACE $(echo $Subnet | grep -Eo "([0-9]+\.)+[0-9]+") netmask $(ipcalc 192.0.0.1/24 | grep -Eo "(255\.)+(0|255)");
 iptables -A FORWARD -o \$INTERFACE -j ACCEPT; iptables -A FORWARD -i \$INTERFACE -j ACCEPT; iptables -t nat -A POSTROUTING -o $dev -j MASQUERADE;
 " > /etc/tinc/$vpnName/tinc-up
+
+####################### generating tinc-down #######################
 
 echo "
 #!/bin/bash
@@ -58,6 +62,8 @@ iptables -D FORWARD -o \$INTERFACE -j ACCEPT; iptables -D FORWARD -i \$INTERFACE
 
 chmod -v +x /etc/tinc/$vpnName/tinc-{up,down}
 echo 1 > /proc/sys/net/ipv4/ip_forward
+
+####################### generating certificate #######################
 
 sudo tincd -n $vpnName -K 4096
 
