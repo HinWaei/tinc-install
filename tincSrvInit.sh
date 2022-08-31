@@ -46,7 +46,7 @@ read -p "[ IGNORABLE ] Please enter the network device you want to forward the p
 
 ####################### generating tinc-up #######################
 
-echo $(cidr_to_netmask)
+
 echo "
 #!/bin/bash
 /sbin/ifconfig \$INTERFACE $(echo $LocalIP netmask $(ipcalc $Subnet | grep -Eo "(255\.)+(0|255)");
