@@ -41,6 +41,8 @@ netsh interface ip set address \"$Interface\" static $Subnet 255.255.255.0
 echo "
 " > $clientpath/tinc-down.bat
 
+
+################# TO GENERATE FILES FOR RUN AND DETACHMENT BELOW ################
 echo "
 @echo off
 %~dp0tincd.exe -n $clientDir
@@ -52,6 +54,8 @@ echo "
 %~dp0tincd.exe -n $clientDir -k
 pause
 " > $clientepath/detach.bat
+
+################# certificate generation ################
 
 tincd -n $clientDir -K 4096
 
