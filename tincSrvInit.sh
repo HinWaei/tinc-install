@@ -2,7 +2,9 @@
 
 apt update && apt install ipcalc -y
 
-read -p "Please enter the name of your VPN [myVpn]:" -i "myVpn" -e vpnName
+echo "THIS PROGRAM IS WRITTEN TO GENERATE tinc.conf"
+
+read -p "Please enter the name of your VPN(i.e. the directory with configuration files of this server stored) [gameVpn]:" -i "gameVpn" -e vpnName
 
 mkdir -p /etc/tinc/$vpnName/hosts
 
@@ -14,15 +16,15 @@ Address=$(curl ip.sb)
 
 echo "######### tinc.conf  ##########"
 read -p "Please enter the interface name you want [tun0]:" -i "tun0" -e Interface
-read -p "Please input the name of the default server [myServer]:" -i "myServer" -e Name
-read -p "Please enter the address to bind to [* means 0.0.0.0/0]:" -i "*" -e BindToAddress
-read -p "Please enter the listening port [21111]:" -i "21111" -e port
-read -p "Enter your device path [/dev/net/tun]:" -i "/dev/net/tun" -e Device
+read -p "Please input the name of server file(which would be stored in 'hosts' directory of 'gameVpn' directory) [myServerFile]:" -i "myServerFile" -e Name
+read -p "[ IGNORABLE ] Please enter the address to bind to [* means 0.0.0.0/0]:" -i "*" -e BindToAddress
+read -p "[ IGNORABLE ] Please enter the listening port [21111]:" -i "21111" -e port
+read -p "Enter your the path of your server's network adapter [/dev/net/tun]:" -i "/dev/net/tun" -e Device
 echo "PLEASE NOTE THAT the AddressFamily field would be set as ipv4 by default"
 
 echo "######### $Name ##########"
-read -p "Please enter your domain/IP [$Address]:" -i "$Address" -e Address
-read -p "Please enter the subnet range [192.0.0.0/24]:" -i "192.0.0.0/24" -e Subnet
+read -p "Please enter the domain/IP of this server [$Address]:" -i "$Address" -e Address
+read -p "Please enter the subnet range for nodes connecting to this server [192.0.0.0/24]:" -i "192.0.0.0/24" -e Subnet
 #echo "###### Please DO REMEMBER the trailing bits should be 0 ######"
 
 echo "
