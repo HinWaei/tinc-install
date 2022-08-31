@@ -2,19 +2,19 @@
 
 echo "##### NOTE: This file is for generating Windows-based client files #####"
 
-read -p "Please enter your client directory name[clientVpn]:" -i "clientVpn" -e clientDir
+read -p "Please enter your client directory name[nickClientVpn]:" -i "nickClientVpn" -e clientDir
 clientpath="/etc/tinc/$clientDir"
 echo "Your client config files would be stored in $clientpath"
 mkdir -p $clientpath/hosts
 
-read -p "Please enter the client file name[myClient]:" -i "myClient" -e Name
+read -p "Please enter the client file name(i.e. the file in 'hosts' of 'xxClientVpn')[nickClientFile]:" -i "nickClientFile" -e Name
 read -p "Please enter the network adapter name you like[myVpn]:" -i "myVpn" -e Interface
 ls /etc/tinc
-read -p "What's the server vpn name you entered just now [myVpn]:" -i "myVpn" -e vpnName
+read -p "What's the server vpn directory name?(I guess it would be gameVpn by default) [gameVpn]:" -i "gameVpn" -e vpnName
 echo "##### There're totally $(ls /etc/tinc/$vpnName/hosts | wc -l) nodes in the hosts directory of $vpnName #####"
 read -p "Please enter the static internal IP address/subnet[e.g. 192.0.0.2]:" -e Subnet
 ls /etc/tinc/$vpnName/hosts
-read -p "Please enter your server file name[myServer]:" -i "myServer" -e ConnectTo
+read -p "Please enter your server file name(which should be in the server vpn directory and stand for the server) [myServerFile]:" -i "myServerFile" -e ConnectTo
 read -p "What's your server's public IP/domain and port[example.com 655]?:" -i "txcloud.hinwai.top 21111" -e Address
 
 echo "##### If you want to add extra subnets, please edit $clientpath/hosts/$Name #####"
