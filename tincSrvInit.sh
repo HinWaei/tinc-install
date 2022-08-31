@@ -68,4 +68,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 sudo tincd -n $vpnName -K 4096
 
-echo "Bravo! You server is all set now! Please continue to configure your client"
+echo "
+Bravo! You server is all set now! Please continue to configure your client
+"
