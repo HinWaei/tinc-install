@@ -24,7 +24,8 @@ echo "PLEASE NOTE THAT the AddressFamily field would be set as ipv4 by default"
 
 echo "######### $Name ##########"
 read -p "Please enter the domain/IP of this server [$Address]:" -i "$Address" -e Address
-read -p "Please enter the subnet range for nodes connecting to this server [192.0.0.1/24]:" -i "192.0.0.1/24" -e Subnet
+read -p "Please enter the subnet range for nodes connecting to this server [192.0.0.0/24]:" -i "192.0.0.0/24" -e Subnet
+read -p "Please enter your server local ip(in your subnet) [192.0.0.1]:" -i "192.0.0.1" -e LocalIP
 #echo "###### Please DO REMEMBER the trailing bits should be 0 ######"
 
 echo "
@@ -48,7 +49,7 @@ read -p "[ IGNORABLE ] Please enter the network device you want to forward the p
 echo $(cidr_to_netmask)
 echo "
 #!/bin/bash
-/sbin/ifconfig \$INTERFACE $(echo $Subnet | grep -Eo "([0-9]+\.)+[0-9]+") netmask $(ipcalc 192.0.0.1/24 | grep -Eo "(255\.)+(0|255)");
+/sbin/ifconfig \$INTERFACE $(echo $LocalIP netmask $(ipcalc $Subnet | grep -Eo "(255\.)+(0|255)");
 iptables -A FORWARD -o \$INTERFACE -j ACCEPT; iptables -A FORWARD -i \$INTERFACE -j ACCEPT; iptables -t nat -A POSTROUTING -o $dev -j MASQUERADE;
 " > /etc/tinc/$vpnName/tinc-up
 
